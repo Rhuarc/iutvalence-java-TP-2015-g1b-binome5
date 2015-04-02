@@ -1,53 +1,60 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
+ * Une dalle abstraite.
  * 
- * @author chenavie Une dalle accéssible. Le joueur peut accéder à une Dalle, on
- *         définit pour cette classe que aucune Dalle n'est un point de départ
- *         ni d'arrivée.
+ * @author chenavie.
  */
 public abstract class Dalle extends Case
 	{
 		/**
-		 * Une dalle est accessible.
+		 * Une {@link Dalle} est accessible.
 		 */
 		private static boolean accès = true;
-		
+
 		/**
-		 * une Dalle n'est pas un point de départ
+		 * une {@link Dalle} n'est pas un point de départ.
 		 * 
 		 */
 		private final boolean estUnDépart = false;
-		
+
 		/**
-		 * Une dalle n'est pas un point de départ
+		 * Une {@link Dalle} n'est pas un point de départ.
 		 */
 		private static boolean estUneArrivée = false;
 
-		/**
-		 * Toute les Dalles sont accessible.
-		 * @return true
-		 */
-		public boolean estAcces()
+		public Dalle()
 			{
-				return true;
+
 			}
-		
+
 		/**
-		 * Une dalle ne peut être un départ.
-		 * @return false;
-		 */
-		public boolean estUnDépart()
-			{
-				return this.estUnDépart;
-			}
-		/**
-		 * Une dalle ne peut être une Arrivée.
+		 * Obtenir si la case est une arrivée
+		 * 
 		 * @return false
 		 */
 		public boolean estUneArrivée()
 			{
 				return false;
+			}
+
+		/**
+		 * Retourne si une Dalle est un départ.
+		 * 
+		 * @return si la Dalle est un départ.
+		 */
+		public boolean estUnDépart()
+			{
+				return false;
+			}
+
+		/**
+		 * 
+		 * @return si la case est accessible
+		 */
+		public boolean estAccessible()
+			{
+				return true;
 			}
 
 	}
