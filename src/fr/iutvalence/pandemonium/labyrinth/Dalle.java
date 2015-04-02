@@ -32,16 +32,19 @@ public abstract class Dalle extends Case
 			{
 				return true;
 			}
+		
 		/**
-		 * Un départ pourra être 
-		 * @return estUnDépart;
+		 * Une dalle ne peut être un départ.
+		 * @return false;
 		 */
-
 		public boolean estUnDépart()
 			{
 				return this.estUnDépart;
 			}
-
+		/**
+		 * Une dalle ne peut être une Arrivée.
+		 * @return false
+		 */
 		public boolean estUneArrivée()
 			{
 				return false;

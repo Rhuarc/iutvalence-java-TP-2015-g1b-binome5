@@ -12,14 +12,15 @@ public abstract class Case
 		private static boolean accès = false;
 
 		/**
-		 * Accesseur en lecture pour accès. permet de savoir si la case est
-		 * accessible ou non.
+		 * Une Cas ne peut être accessible.
 		 * 
 		 * @return boolean
 		 */
 		public boolean obtenirAccès()
 			{
-				return this.accès;
+				return false;
 			}
+
+
 
 	}
