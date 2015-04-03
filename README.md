@@ -1,2 +1,7 @@
-# iutvalence-java-TP-2015-g1b-binome5
 Labyrinthe
+==========
+
+## Remarques
+
+- 03/04/2015 :
+    - Pensez à passer votre environnement Eclipse en UTF-8 avec les fins de fichiers LINUX.

@@ -2,59 +2,25 @@ package fr.iutvalence.pandemonium.labyrinth;
 
 /**
  * Une dalle abstraite.
- * 
+ * TODO Compléter la javadoc en situant (conceptuellement) Dalle par rapport à Case.
+ *
  * @author chenavie.
+ * @version TODO
  */
-public abstract class Dalle extends Case
-	{
-		/**
-		 * Une {@link Dalle} est accessible.
-		 */
-		private static boolean accès = true;
+public abstract class Dalle extends Case {
+    /** Par défaut, une dalle n'est pas une arrivée. */
+    public boolean estUneArrivee() {
+        return false;
+    }
 
-		/**
-		 * une {@link Dalle} n'est pas un point de départ.
-		 * 
-		 */
-		private final boolean estUnDépart = false;
+    /** Par défaut, une dalle n'est pas un départ. */
+    public boolean estUnDepart() {
+        return false;
+    }
 
-		/**
-		 * Une {@link Dalle} n'est pas un point de départ.
-		 */
-		private static boolean estUneArrivée = false;
-
-		public Dalle()
-			{
-
-			}
-
-		/**
-		 * Obtenir si la case est une arrivée
-		 * 
-		 * @return false
-		 */
-		public boolean estUneArrivée()
-			{
-				return false;
-			}
-
-		/**
-		 * Retourne si une Dalle est un départ.
-		 * 
-		 * @return si la Dalle est un départ.
-		 */
-		public boolean estUnDépart()
-			{
-				return false;
-			}
-
-		/**
-		 * 
-		 * @return si la case est accessible
-		 */
-		public boolean estAccessible()
-			{
-				return true;
-			}
-
-	}
+    /** Une Dalle est une Case accessible. */
+    @Override
+    public boolean estAccessible() {
+        return true;
+    }
+}

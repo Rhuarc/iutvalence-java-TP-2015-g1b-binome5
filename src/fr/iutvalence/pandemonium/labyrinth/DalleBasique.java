@@ -1,43 +1,12 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * modélise une dalle du labyrinthe.
- * 
- * @author Eymeric
+ * Une DalleBasique a le comportement standard d'une {@link Dalle}.
+ * TODO Si c'est le cas pourquoi Dalle est abstrait ? Et pourquoi ne pas directement le rendre concret et supprimer  cette classe ?
  *
+ * @author Eymeric
+ * @version TODO
  */
-public class DalleBasique extends Dalle
-	{
-		/**
-		 * une {@link DalleBasique} a les mêmes attributs qu'une {@link Dalle}.
-		 */
-		public DalleBasique()
-			{
-				super();
-			}
-
-		/**
-		 * une DalleBasique est accessible
-		 */
-		public boolean estAccessible()
-			{
-				return super.estAccessible();
-			}
-
-		/**
-		 * une {@link DalleBasique} n'est pas une arrivée.
-		 */
-		public boolean estUneArrivée()
-			{
-				return super.estUneArrivée();
-			}
-
-		/**
-		 * une {@link DalleBasique} n'est pas un départ.
-		 */
-		public boolean estUnDépart()
-			{
-				return super.estUnDépart();
-			}
-
-	}
+public class DalleBasique extends Dalle {
+    /* NOTHING. */
+}

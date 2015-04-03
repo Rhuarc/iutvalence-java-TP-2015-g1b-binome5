@@ -1,7 +1,6 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
-
-public class Plateau 
-{
-	
+/* TODO JAVADOC. */
+public class Plateau {
+    /* TODO À remplir. */
 }

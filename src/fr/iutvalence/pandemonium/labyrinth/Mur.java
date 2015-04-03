@@ -1,33 +1,15 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * Modélise les murs de notre Labyrinthe.
- * 
- * @author Eymeric
+ * Un mur de notre Labyrinthe.
  *
+ * @author Eymeric
+ * @version TODO
  */
-public class Mur extends Case
-	{
-
-		/**
-		 * un {@link Mur}à les mêmes attributs qu'une {@link Case}.
-		 */
-		public Mur()
-			{
-
-			}
-		/**
-		 * un Mur n'est pas accessible par le Joueur.
-		 */
-		public boolean estAccessible()
-			{
-				return super.estAccessible();
-			}
-
-		@Override
-		public String toString()
-			{
-				return "Mur [estAccessible()=" + estAccessible() + "]";
-			}
-
-	}
+public class Mur extends Case {
+    /* TODO toString peut judicieux… Utilisez le pour la génération de l'affichage textuel du labyrinthe. */
+    @Override
+    public String toString() {
+        return "Mur [estAccessible()=" + estAccessible() + ']';
+    }
+}

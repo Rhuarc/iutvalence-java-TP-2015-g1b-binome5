@@ -1,24 +1,18 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
-/**
- * Classe abstraite modélisant une case du labyrinthe.
- * @author chenavie 
- */
-public abstract class Case
-	{
-		/**
-		 * Pour savoir si le joueur peut accéder à cette case.
-		 */
-		private static boolean accès = false;
-		
-		/**
-		 * Une Case ne peut être accessible.
-		 * 
-		 * @return boolean
-		 */
-		public boolean estAccessible()
-			{
-				return false;
-			}
+/* TODO Pourquoi Case est abstraite et non une interface ? */
 
-	}
+/**
+ * Case du labyrinthe.
+ * <p>
+ * Par défaut, les cases sont inaccessibles (donc des {@link Mur}).
+ *
+ * @author chenavie
+ * @version TODO
+ */
+public abstract class Case {
+    /** Par défaut, une Case est inaccessible. */
+    public boolean estAccessible() {
+        return false;
+    }
+}
