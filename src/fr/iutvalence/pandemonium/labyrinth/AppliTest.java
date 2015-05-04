@@ -1,12 +1,12 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
-/* TODO JAVADOC. */
-public class AppliTest {
-    /* TODO JAVADOC. */
-    public static void main(String[] args) {
-        DalleBasique maDalle = new DalleBasique();
-        DalleDeDepart maDalleDeDepart = new DalleDeDepart();
-        Mur monMur = new Mur();
-        System.out.println(maDalle.estAccessible());
-    }
-}
+public class AppliTest
+	{
+
+		public static void main(String[] args)
+			{
+				Partie maPartie = new Partie();
+				System.out.println(maPartie.afficherPartie());
+			}
+
+	}

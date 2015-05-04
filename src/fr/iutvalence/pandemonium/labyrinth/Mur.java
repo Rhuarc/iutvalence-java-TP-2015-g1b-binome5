@@ -1,15 +1,24 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * Un mur de notre Labyrinthe.
+ * Un {@link Mur} de notre Labyrinthe.
  *
  * @author Eymeric
- * @version TODO
+ * @version 1.0
  */
-public class Mur extends Case {
-    /* TODO toString peut judicieux… Utilisez le pour la génération de l'affichage textuel du labyrinthe. */
-    @Override
-    public String toString() {
-        return "Mur [estAccessible()=" + estAccessible() + ']';
-    }
-}
+public class Mur implements Case
+	{
+		/** un {@link Mur} est inaccessible */
+		public boolean estAccessible()
+			{
+				return false;
+			}
+		
+		/** representation d'un {@link Mur} en ASCII art.*/
+		@Override
+		public String toString()
+					{
+				return "X";
+			}
+
+	}
