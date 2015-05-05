@@ -26,22 +26,27 @@ public class Plateau
 							{
 								if (indicesCasesHorizontal == 5)
 									{
-										switch (indiceCasesVertical) {
-										case 0:
+										switch (indiceCasesVertical)
 											{
-												this.cases[indiceCasesVertical][indicesCasesHorizontal] = new DalleDepart();
-												break;
+											case 0:
+												{
+													this.cases[indiceCasesVertical][indicesCasesHorizontal] = new DalleDepart();
+													break;
+												}
+											case NOMBRE_CASES_VERTICAL_LABYRINTHE - 1:
+												{
+													this.cases[indiceCasesVertical][indicesCasesHorizontal] = new DalleArrivée();
+													break;
+												}
+											default:
+												{
+													this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Dalle();
+												}
 											}
-										case NOMBRE_CASES_VERTICAL_LABYRINTHE - 1:
-											{
-												this.cases[indiceCasesVertical][indicesCasesHorizontal] = new DalleArrivée();
-												break;
-											}
-										default:
-											{
-												this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Dalle();
-											}
-										}
+									}
+								else if(indiceCasesVertical == 2)
+									{
+										this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Dalle();
 									}
 
 								else
@@ -74,6 +79,5 @@ public class Plateau
 				return PlateauAsciiArt;
 
 			}
-
 
 	}

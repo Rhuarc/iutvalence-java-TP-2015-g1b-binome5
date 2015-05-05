@@ -17,6 +17,14 @@ public class Partie
 		 *         false.
 		 */
 		private CaseJoueur joueur;
+		/**
+		 * renvoie le joueur de la partie.
+		 * @return
+		 */
+		public CaseJoueur DonneJoueur()
+			{
+				return joueur;
+			}
 
 		/**
 		 * test si la case est la {@link DalleArrivée}.
@@ -32,6 +40,7 @@ public class Partie
 		/**
 		 * création d'une partie. constituer {@link Plateau}, un
 		 * {@link CaseJoueur} et un ombre de tour initialiser a zéro
+		 * elle initialise la {@link CaseJoueur} sur la {@link DalleDepart}.
 		 */
 		public Partie()
 			{
@@ -120,6 +129,54 @@ public class Partie
 							this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur + 1);
 						}
 			}
+		
+
+		/**
+		 * chaque tour, le joueur choisit la direction de son prochain
+		 * deplacement.
+		 * 
+		 * @param choixJoueur
+		 * @return
+		 */
+		public void choixJoueurParTour(int choixJoueur)
+			{
+				switch (choixJoueur)
+					{
+					case 1:
+						{
+							deplacementVersLeBas();
+							break;
+						}
+					case 2:
+						{
+							deplacementVersLeHaut();
+							break;
+						}
+					case 3:
+						{
+							deplacementVersLaDroite();
+							break;
+						}
+					case 4:
+						{
+							deplacementVersLaGauche();
+							break;
+						}
+					}
+			}
+		
+		/**
+		 * Est le test de victoire.
+		 * @param positionVerticaleDuJoueur
+		 * @param positionHorizontalDuJoueur
+		 * @return
+		 */
+		public boolean leJoueurNEstPasArrivee( int positionVerticaleDuJoueur, int positionHorizontalDuJoueur)
+		{
+			if(this.plateau.cases[positionVerticaleDuJoueur][positionHorizontalDuJoueur] instanceof DalleArrivée)
+				return false;
+			return true;
+		}
 
 		/**
 		 * affiche la {@link Partie} en cours

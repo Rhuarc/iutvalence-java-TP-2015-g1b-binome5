@@ -1,20 +1,35 @@
 package fr.iutvalence.pandemonium.labyrinth;
-
+import java.util.Scanner;
+/**
+ * l'application servant a jouer au labyrinthe
+ * 
+ * @author Eymeric
+ *
+ */
 public class AppliTest
-	{
+{
+		/**
+		 * la partie qui est jouer par {@link AppliTest}
+		 */
 
 		public static void main(String[] args)
 			{
+				Scanner monScanner = new Scanner(System.in);
 				Partie maPartie = new Partie();
 				System.out.println(maPartie.afficherPartie());
-				maPartie.deplacementVersLeBas();
-				System.out.println(maPartie.afficherPartie());
-				maPartie.deplacementVersLeBas();
-				System.out.println(maPartie.afficherPartie());
-				maPartie.deplacementVersLeHaut();
-				System.out.println(maPartie.afficherPartie());
-				maPartie.deplacementVersLeHaut();
-				System.out.println(maPartie.afficherPartie());
+				System.out.println("pour vous déplacer : \n 1 -> bas \n 2 -> haut \n 3 -> gauche \n 4 -> haut");
+				while(maPartie.leJoueurNEstPasArrivee(maPartie.DonneJoueur().donnePositionVertical(), maPartie.DonneJoueur().donnePositionHorizontal()))
+					{
+						int ChoixJoueur = monScanner.nextInt();
+						maPartie.choixJoueurParTour(ChoixJoueur);
+						System.out.println(maPartie.afficherPartie());
+					}
+				System.out.println("GG WP");
+
 			}
 
-	}
+
+	
+
+}
+
