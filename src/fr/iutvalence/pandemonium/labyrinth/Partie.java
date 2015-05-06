@@ -17,8 +17,10 @@ public class Partie
 		 *         false.
 		 */
 		private CaseJoueur joueur;
+
 		/**
 		 * renvoie le joueur de la partie.
+		 * 
 		 * @return
 		 */
 		public CaseJoueur DonneJoueur()
@@ -39,8 +41,8 @@ public class Partie
 
 		/**
 		 * création d'une partie. constituer {@link Plateau}, un
-		 * {@link CaseJoueur} et un ombre de tour initialiser a zéro
-		 * elle initialise la {@link CaseJoueur} sur la {@link DalleDepart}.
+		 * {@link CaseJoueur} et un ombre de tour initialiser a zéro elle
+		 * initialise la {@link CaseJoueur} sur la {@link DalleDepart}.
 		 */
 		public Partie()
 			{
@@ -65,18 +67,29 @@ public class Partie
 		 */
 		public void deplacementVersLeBas()
 			{
-				int PositionVerticalDuJoueur = this.joueur.donnePositionVertical();
-				int PositionHorizontalDuJoueur = this.joueur.donnePositionHorizontal();
+				int positionVerticalDuJoueur = this.joueur.donnePositionVertical();
+				int positionHorizontalDuJoueur = this.joueur.donnePositionHorizontal();
 
-				if (PositionVerticalDuJoueur + 1 < plateau.NOMBRE_CASES_VERTICAL_LABYRINTHE)
-					if (this.plateau.cases[PositionVerticalDuJoueur + 1][PositionHorizontalDuJoueur].estAccessible())
+				if (positionVerticalDuJoueur + 1 < plateau.NOMBRE_CASES_VERTICAL_LABYRINTHE)
+					{
+						if (this.plateau.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur] instanceof DalleArrivée)
 
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Dalle();
+								this.joueur.determinePositionHorizontal(positionVerticalDuJoueur + 1);
+								this.nombreDeTours += 1;
+							}
+						
+						
+					else if (this.plateau.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur].estAccessible())
+					
 						{
-							this.plateau.cases[PositionVerticalDuJoueur][PositionHorizontalDuJoueur] = this.plateau.cases[PositionVerticalDuJoueur + 1][PositionHorizontalDuJoueur];
-							this.plateau.cases[PositionVerticalDuJoueur + 1][PositionHorizontalDuJoueur] = this.joueur;
-							this.joueur.determinePositionVertical(PositionVerticalDuJoueur + 1);
+							this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.plateau.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur];
+							this.plateau.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur] = this.joueur;
+							this.joueur.determinePositionVertical(positionVerticalDuJoueur + 1);
 							this.nombreDeTours += 1;
 						}
+					}
 			}
 
 		/**
@@ -84,35 +97,56 @@ public class Partie
 		 */
 		public void deplacementVersLeHaut()
 			{
-				int PositionVerticalDuJoueur = this.joueur.donnePositionVertical();
-				int PositionHorizontalDuJoueur = this.joueur.donnePositionHorizontal();
+				int positionVerticalDuJoueur = this.joueur.donnePositionVertical();
+				int positionHorizontalDuJoueur = this.joueur.donnePositionHorizontal();
 
-				if (PositionVerticalDuJoueur - 1 >= 0)
-					if (this.plateau.cases[PositionVerticalDuJoueur - 1][PositionHorizontalDuJoueur].estAccessible())
+				if (positionVerticalDuJoueur - 1 >= 0)
+					{
+						if (this.plateau.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur] instanceof DalleArrivée)
 
-						{
-							this.plateau.cases[PositionVerticalDuJoueur][PositionHorizontalDuJoueur] = this.plateau.cases[PositionVerticalDuJoueur + 1][PositionHorizontalDuJoueur];
-							this.plateau.cases[PositionVerticalDuJoueur - 1][PositionHorizontalDuJoueur] = this.joueur;
-							this.joueur.determinePositionVertical(PositionVerticalDuJoueur - 1);
-							this.nombreDeTours += 1;
-						}
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Dalle();
+								this.joueur.determinePositionHorizontal(positionVerticalDuJoueur - 1);
+							}
+
+						else if (this.plateau.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur].estAccessible())
+
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.plateau.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur];
+								this.plateau.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur] = this.joueur;
+								this.joueur.determinePositionVertical(positionVerticalDuJoueur - 1);
+								this.nombreDeTours += 1;
+							}
+					}
 			}
-/**
- * Déplace la {@link CaseJoueur} sur la gauche du {@link Plateau}.
- */
+
+		/**
+		 * Déplace la {@link CaseJoueur} sur la gauche du {@link Plateau}.
+		 */
 		public void deplacementVersLaGauche()
 			{
 				int positionVerticalDuJoueur = this.joueur.donnePositionVertical();
 				int positionHorizontalDuJoueur = this.joueur.donnePositionHorizontal();
 
 				if (positionHorizontalDuJoueur - 1 >= 0)
-					if (this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1].estAccessible())
-						{
-							this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1];
-							this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1] = this.joueur;
-							this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur - 1);
-						}
+					{
+						if (this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1] instanceof DalleArrivée)
+
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Dalle();
+								this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur - 1);
+								this.nombreDeTours += 1;
+							} else if (this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1].estAccessible())
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1];
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1] = this.joueur;
+								this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur - 1);
+							}
+
+					}
+
 			}
+
 		/**
 		 * Déplace la {@link CaseJoueur} vers la droite du {@link Plateau}.
 		 */
@@ -122,14 +156,24 @@ public class Partie
 				int positionHorizontalDuJoueur = this.joueur.donnePositionHorizontal();
 
 				if (positionHorizontalDuJoueur + 1 < this.plateau.NOMBRE_CASES_HORIZONTAL_LABYRINTHE)
-					if (this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1].estAccessible())
-						{
-							this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1];
-							this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1] = this.joueur;
-							this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur + 1);
-						}
+					{
+						if (this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1] instanceof DalleArrivée)
+
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Dalle();
+								this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur + 1);
+								this.nombreDeTours += 1;
+							} else if (this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1].estAccessible())
+
+							{
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1];
+								this.plateau.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1] = this.joueur;
+								this.joueur.determinePositionHorizontal(positionHorizontalDuJoueur + 1);
+							}
+
+					}
+
 			}
-		
 
 		/**
 		 * chaque tour, le joueur choisit la direction de son prochain
@@ -140,6 +184,9 @@ public class Partie
 		 */
 		public void choixJoueurParTour(int choixJoueur)
 			{
+				int positionVerticalDuJoueur = joueur.donnePositionVertical();
+				int positionHorizontalDuJoueur = joueur.donnePositionVertical();
+
 				switch (choixJoueur)
 					{
 					case 1:
@@ -164,19 +211,20 @@ public class Partie
 						}
 					}
 			}
-		
+
 		/**
 		 * Est le test de victoire.
+		 * 
 		 * @param positionVerticaleDuJoueur
 		 * @param positionHorizontalDuJoueur
 		 * @return
 		 */
-		public boolean leJoueurNEstPasArrivee( int positionVerticaleDuJoueur, int positionHorizontalDuJoueur)
-		{
-			if(this.plateau.cases[positionVerticaleDuJoueur][positionHorizontalDuJoueur] instanceof DalleArrivée)
-				return false;
-			return true;
-		}
+		public boolean leJoueurNEstPasArrivee(int positionVerticaleDuJoueur, int positionHorizontalDuJoueur)
+			{
+				if (this.plateau.cases[positionVerticaleDuJoueur][positionHorizontalDuJoueur] instanceof DalleArrivée)
+					return false;
+				return true;
+			}
 
 		/**
 		 * affiche la {@link Partie} en cours

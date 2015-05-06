@@ -16,9 +16,10 @@ public class AppliTest
 			{
 				Scanner monScanner = new Scanner(System.in);
 				Partie maPartie = new Partie();
+				boolean joueurEstArrivee = maPartie.leJoueurNEstPasArrivee(maPartie.DonneJoueur().donnePositionVertical(), maPartie.DonneJoueur().donnePositionHorizontal());
 				System.out.println(maPartie.afficherPartie());
 				System.out.println("pour vous déplacer : \n 1 -> bas \n 2 -> haut \n 3 -> gauche \n 4 -> haut");
-				while(maPartie.leJoueurNEstPasArrivee(maPartie.DonneJoueur().donnePositionVertical(), maPartie.DonneJoueur().donnePositionHorizontal()))
+				while(joueurEstArrivee)
 					{
 						int ChoixJoueur = monScanner.nextInt();
 						maPartie.choixJoueurParTour(ChoixJoueur);

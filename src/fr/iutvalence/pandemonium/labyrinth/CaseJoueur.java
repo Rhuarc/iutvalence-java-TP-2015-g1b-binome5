@@ -39,7 +39,7 @@ public class CaseJoueur implements Case
 		 */
 		public int donnePositionVertical()
 			{
-				return positionVertical;
+				return this.positionVertical;
 			}
 
 		/**
@@ -50,7 +50,7 @@ public class CaseJoueur implements Case
 
 		public int donnePositionHorizontal()
 			{
-				return positionHorizontal;
+				return this.positionHorizontal;
 			}
 
 		/**
