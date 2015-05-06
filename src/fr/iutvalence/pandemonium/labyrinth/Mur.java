@@ -6,7 +6,7 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  * @version 1.0
  */
-public class Mur implements Case
+public class Mur extends Case
 	{
 		/** un {@link Mur} est inaccessible */
 		public boolean estAccessible()

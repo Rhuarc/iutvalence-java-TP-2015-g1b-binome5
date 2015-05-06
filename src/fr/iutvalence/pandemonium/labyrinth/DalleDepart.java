@@ -6,7 +6,7 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  * @version 1.0
  */
-public class DalleDepart extends Dalle implements Case
+public class DalleDepart extends Dalle implements InterfaceCase
 	{
 		public DalleDepart()
 		{

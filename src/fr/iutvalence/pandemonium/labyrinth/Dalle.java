@@ -1,14 +1,15 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * Une {@link Dalle} est une {@link Case} qui est accessible. TODO Compléter la
+ * Une {@link Dalle} est une {@link InterfaceCase} qui est accessible. TODO Compléter la
  * javadoc en situant (conceptuellement) Dalle par rapport à Case.
  *
  * @author chenavie.
  * @version 1.0
  */
-public class Dalle implements Case
+public class Dalle extends Case
 	{
+		// TODO constructeur
 		public boolean joueurEstPresent;
 		
 		/** Par défaut, une dalle n'est pas une arrivée. */
