@@ -1,10 +1,8 @@
 Labyrinthe
 ==========
 
-## Remarques
+## Remarks
 
-- 03/04/2015 :
-    - Pensez à passer votre environnement Eclipse en UTF-8 avec les fins de fichiers LINUX.
-
--06/05/2015 :
-	- problème sur l'affichage du joueur lors des tours suivant le premier.
+-05/06/2015:
+    - First, can you clean your source (commit all the class deletions).
+    - After, I will try to help you.
