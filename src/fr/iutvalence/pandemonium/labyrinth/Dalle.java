@@ -1,17 +1,20 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * Une {@link Dalle} est une {@link InterfaceCase} qui est accessible. TODO Compléter la
- * javadoc en situant (conceptuellement) Dalle par rapport à Case.
+ * Une {@link Dalle} est une {@link InterfaceCase} qui est accessible. javadoc
+ * en situant (conceptuellement) Dalle par rapport à Case.
  *
  * @author chenavie.
  * @version 1.0
  */
 public class Dalle extends Case
 	{
-		// TODO constructeur
-		public boolean joueurEstPresent;
-		
+
+		public Dalle(int vertical, int horizontal)
+			{
+				super(vertical, horizontal);
+			}
+
 		/** Par défaut, une dalle n'est pas une arrivée. */
 		public boolean estUneArrivee()
 			{
@@ -30,17 +33,10 @@ public class Dalle extends Case
 			{
 				return true;
 			}
-		
-		public Dalle ()
-		{
-			this.joueurEstPresent = false;
-		}
-		
 
 		@Override
 		public String toString()
-		{if (this.joueurEstPresent)
-			return "J";
-			else return " ";
-		}
+			{
+				return " ";
+			}
 	}

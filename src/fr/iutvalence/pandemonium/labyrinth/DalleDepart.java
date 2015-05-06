@@ -8,10 +8,18 @@ package fr.iutvalence.pandemonium.labyrinth;
  */
 public class DalleDepart extends Dalle implements InterfaceCase
 	{
-		public DalleDepart()
-		{
-			super();
-		}
+
+		/**
+		 * constructeur d'une {@link DalleDepart} une Dalle à ses coordonée sur
+		 * le plateau.
+		 * 
+		 * @param vertical
+		 * @param horizontal
+		 */
+		public DalleDepart(int vertical, int horizontal)
+			{
+				super(vertical, horizontal);
+			}
 
 		/** Dalle de départ. */
 		@Override
@@ -26,13 +34,10 @@ public class DalleDepart extends Dalle implements InterfaceCase
 		 * @return D
 		 */
 		@Override
-	
 		public String toString()
-		
+
 			{
-				if (this.joueurEstPresent)
-				return "J";
-				else return "D";
+				return "D";
 			}
 
 	}

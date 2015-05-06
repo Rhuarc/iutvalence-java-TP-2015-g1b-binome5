@@ -9,9 +9,12 @@ package fr.iutvalence.pandemonium.labyrinth;
 public class DalleArrivée extends Dalle implements InterfaceCase
 	{
 		
-		public DalleArrivée()
+		
+
+		public DalleArrivée(int vertical, int horizontal)
 		{
-			super();
+			super(vertical, horizontal);
+
 		}
 		/** cette Dalle sert d'arrivée au joueur */
 		public boolean estUneArrivee()
@@ -24,8 +27,7 @@ public class DalleArrivée extends Dalle implements InterfaceCase
 		 */
 		@Override
 		public String toString()
-			{if (this.joueurEstPresent)
-				return "J";
-				else return "A";
+			{
+				return "A";
 			}
 	}

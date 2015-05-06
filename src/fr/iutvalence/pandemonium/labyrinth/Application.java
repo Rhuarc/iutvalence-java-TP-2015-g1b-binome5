@@ -1,6 +1,5 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
-import java.util.Scanner;
 
 /**
  * l'application servant a jouer au labyrinthe

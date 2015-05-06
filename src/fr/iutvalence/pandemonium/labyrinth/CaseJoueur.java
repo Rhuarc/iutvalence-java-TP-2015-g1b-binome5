@@ -6,18 +6,15 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  *
  */
-public class CaseJoueur extends Case
+public class CaseJoueur extends Case implements InterfaceCase
 	{
 		
-		public CaseJoueur(int Vertical, int Horizontal)
+			
+		public CaseJoueur(int vertical, int horizontal)
 		{
-			this.PositionVertical=Vertical;
-			this.positionHorizontal=Horizontal;
+			super(vertical, horizontal);
 		}
 		
-
-		
-
 		/**
 		 * une {@link CaseJoueur} ne peut pas être accessible.
 		 */

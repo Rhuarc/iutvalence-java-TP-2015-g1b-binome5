@@ -37,22 +37,22 @@ public class Partie
 					{
 					case 1:
 						{
-							plateau.deplacementVersLeBas();
+							this.plateau.deplacementVersLeBas();
 							break;
 						}
 					case 2:
 						{
-							plateau.deplacementVersLeHaut();
+							this.plateau.deplacementVersLeHaut();
 							break;
 						}
 					case 3:
 						{
-							plateau.deplacementVersLaDroite();
+							this.plateau.deplacementVersLaDroite();
 							break;
 						}
 					case 4:
 						{
-							plateau.deplacementVersLaGauche();
+							this.plateau.deplacementVersLaGauche();
 							break;
 						}
 					default:
@@ -73,15 +73,17 @@ public class Partie
 			}
 
 		public void start()
-			{
+			{	CaseJoueur joueur = this.plateau.getJoueur();
+				@SuppressWarnings("resource")
 				Scanner monScanner = new Scanner(System.in);
 				System.out.println(this);
 				System.out.println("pour vous déplacer : \n 1 -> bas \n 2 -> haut \n 3 -> gauche \n 4 -> haut");
-				while (!plateau.finished())
+				while (!this.plateau.finished(joueur.getPositionVertical(), joueur.getPositionHorizontal()))
 					{
 						int ChoixJoueur = monScanner.nextInt();
+						this.nombreDeTours++;
 						choixJoueurParTour(ChoixJoueur);
-						System.out.println(this);
+						System.out.println(toString());
 					}
 				System.out.println("GG WP");
 			}

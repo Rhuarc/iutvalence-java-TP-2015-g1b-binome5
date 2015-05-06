@@ -8,6 +8,12 @@ package fr.iutvalence.pandemonium.labyrinth;
  */
 public class Mur extends Case
 	{
+		
+		public Mur(int vertical, int horizontal)
+		{
+			super(vertical, horizontal);
+		}
+
 		/** un {@link Mur} est inaccessible */
 		public boolean estAccessible()
 			{
