@@ -1,12 +1,12 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * {@link Dalle} qui sert d'arrivée au joueur.
+ * {@link Slab} qui sert d'arrivée au joueur.
  * 
  * @author Eymeric
  * @version 1.0
  */
-public class DalleArrivée extends Dalle implements InterfaceCase
+public class DalleArrivée extends Slab implements BoxInterface
 	{
 		
 		
@@ -17,7 +17,7 @@ public class DalleArrivée extends Dalle implements InterfaceCase
 
 		}
 		/** cette Dalle sert d'arrivée au joueur */
-		public boolean estUneArrivee()
+		public boolean isAnArrival()
 			{
 				return true;
 			}

@@ -8,7 +8,7 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author chenavie
  * @version 1.0
  */
- abstract class Case implements InterfaceCase
+ abstract class Box implements BoxInterface
 	{
 		private int positionVertical;
 		
@@ -16,18 +16,18 @@ package fr.iutvalence.pandemonium.labyrinth;
 		
 		
 		/**
-		 * une {@link Case} à comme attributs ses coordonés.
+		 * the {@link Box} attributes have their coordinates
 		 * @param vertical
 		 * @param horizontal
 		 */
-		public Case(int vertical, int horizontal)
+		public Box(int vertical, int horizontal)
 		{
 			this.positionVertical = vertical;
 			this.positionHorizontal = horizontal;
 		}
 		/**
 		 * 
-		 * @return position Vertical de la {@link Case}
+		 * @return vertical position of the {@link Box}
 		 */
 		public int getPositionVertical()
 			{
@@ -35,14 +35,14 @@ package fr.iutvalence.pandemonium.labyrinth;
 			}
 		/**
 		 * setter de la position Horizontal 
-		 * @return position horizontal de la {@link Case}
+		 * @return position horizontal de la {@link Box}
 		 */
 		public int getPositionHorizontal()
 			{
 				return this.positionHorizontal;
 			}
 		/**
-		 * modifie la position veritcal de la {@link Case}
+		 * modifie la position veritcal de la {@link Box}
 		 * @param positionVertical
 		 */
 
@@ -51,7 +51,7 @@ package fr.iutvalence.pandemonium.labyrinth;
 				this.positionVertical = positionVertical;
 			}
 		/**
-		 * modifie la position horizontal de la {@link Case}
+		 * modifie la position horizontal de la {@link Box}
 		 * @param positionHorizontal
 		 */
 		public void setPositionHorizontal(int positionHorizontal)
@@ -61,7 +61,7 @@ package fr.iutvalence.pandemonium.labyrinth;
 
 		/** Par défaut, une Case est inaccessible. */
 		
-		public boolean estAccessible()
+		public boolean isAvailable()
 			{
 				return false;
 			}

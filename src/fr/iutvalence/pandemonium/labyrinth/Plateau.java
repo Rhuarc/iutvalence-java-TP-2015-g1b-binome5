@@ -1,6 +1,5 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
-
 /**
  * Plateau de jeu contenant notre Labyrinthe.
  * 
@@ -12,24 +11,24 @@ public class Plateau
 		public final static int NOMBRE_CASES_HORIZONTAL_LABYRINTHE = 10;
 		public final static int NOMBRE_CASES_VERTICAL_LABYRINTHE = 10;
 		/** Le Plateau est un tableaux de Case a deux dimensions. */
-		private Case[][] cases;
+		private Box[][] cases;
 
-		private CaseJoueur joueur;
+		private PlayerBox joueur;
 
 		private DalleArrivée arrivee;
 
 		/**
-		 * un plateau est créer. il contient un chemin de {@link Dalle}, une
+		 * un plateau est créer. il contient un chemin de {@link Slab}, une
 		 * {@link DalleDepart}, une {@link DalleArrivée} et des {@link Mur}.
 		 */
 		public Plateau()
 			{
-				this.cases = new Case[NOMBRE_CASES_VERTICAL_LABYRINTHE][NOMBRE_CASES_HORIZONTAL_LABYRINTHE];
+				this.cases = new Box[NOMBRE_CASES_VERTICAL_LABYRINTHE][NOMBRE_CASES_HORIZONTAL_LABYRINTHE];
 				labyrinthGenerator();
 
 			}
 
-		public CaseJoueur getJoueur()
+		public PlayerBox getJoueur()
 			{
 				return this.joueur;
 			}
@@ -40,7 +39,7 @@ public class Plateau
 			}
 
 		/**
-		 * génère un Labyrinth de {@link Case}
+		 * génère un Labyrinth de {@link Box}
 		 */
 		public void labyrinthGenerator()
 			{
@@ -54,7 +53,7 @@ public class Plateau
 											{
 											case 0:
 												{
-													this.joueur = new CaseJoueur(indiceCasesVertical, indicesCasesHorizontal);
+													this.joueur = new PlayerBox(indiceCasesVertical, indicesCasesHorizontal);
 													this.cases[indiceCasesVertical][indicesCasesHorizontal] = this.joueur;
 													break;
 												}
@@ -66,12 +65,12 @@ public class Plateau
 												}
 											default:
 												{
-													this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Dalle(indiceCasesVertical, indicesCasesHorizontal);
+													this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Slab(indiceCasesVertical, indicesCasesHorizontal);
 												}
 											}
 									} else if (indiceCasesVertical == 2)
 									{
-										this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Dalle(indiceCasesVertical, indicesCasesHorizontal);
+										this.cases[indiceCasesVertical][indicesCasesHorizontal] = new Slab(indiceCasesVertical, indicesCasesHorizontal);
 									}
 
 								else
@@ -84,34 +83,33 @@ public class Plateau
 			}
 
 		/**
-		 * deplacement de la {@link CaseJoueur} vers le bas du {@link Plateau}
+		 * deplacement de la {@link PlayerBox} vers le bas du {@link Plateau}
 		 * exceptions pour le déplacement sur une {@link DalleArrivée}
 		 */
-		// TODO réflechir a une methode d'esceptions pour la case d'arrivee.
 		public void deplacementVersLeBas()
 			{
 				int positionVerticalDuJoueur = this.joueur.getPositionVertical();
 				int positionHorizontalDuJoueur = this.joueur.getPositionHorizontal();
-				
-				Case nextCase = this.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur];
+
 				if (positionVerticalDuJoueur + 1 < NOMBRE_CASES_VERTICAL_LABYRINTHE)
 					{
 
-						if (nextCase.estAccessible())
+						if (this.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur].isAvailable())
 							{
-								if (((Dalle) nextCase).estUneArrivee())
+								if (((Slab) this.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur]).isAnArrival())
 
 									{
-										new Dalle(positionVerticalDuJoueur, positionHorizontalDuJoueur);
-										nextCase = this.joueur;
-										this.joueur.setPositionHorizontal(positionVerticalDuJoueur + 1);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Slab(positionVerticalDuJoueur, positionHorizontalDuJoueur);
+										this.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur] = this.joueur;
+										this.joueur.setPositionVertical(positionVerticalDuJoueur + 1);
 									}
 
 								else
 
-									{	
-										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = nextCase;
-										nextCase = this.joueur;
+									{
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur].setPositionVertical(positionVerticalDuJoueur);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur];
+										this.cases[positionVerticalDuJoueur + 1][positionHorizontalDuJoueur] = this.joueur;
 										this.joueur.setPositionVertical(positionVerticalDuJoueur + 1);
 									}
 
@@ -120,7 +118,7 @@ public class Plateau
 			}
 
 		/**
-		 * deplacement de la {@link CaseJoueur} vers le haut du {@link Plateau}
+		 * deplacement de la {@link PlayerBox} vers le haut du {@link Plateau}
 		 * exceptions pour le déplacement sur une {@link DalleArrivée}
 		 */
 		public void deplacementVersLeHaut()
@@ -128,23 +126,23 @@ public class Plateau
 				int positionVerticalDuJoueur = this.joueur.getPositionVertical();
 				int positionHorizontalDuJoueur = this.joueur.getPositionHorizontal();
 
-				Case nextCase = this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur];
 				if (positionVerticalDuJoueur - 1 >= 0)
 					{
-						if (nextCase.estAccessible())
+						if (this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur].isAvailable())
 							{
-								if (((Dalle) nextCase).estUneArrivee())
+								if (((Slab) this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur]).isAnArrival())
 
 									{
-										new Dalle(positionVerticalDuJoueur, positionHorizontalDuJoueur);
-										this.joueur.setPositionHorizontal(positionVerticalDuJoueur - 1);
-										nextCase = this.joueur;
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Slab(positionVerticalDuJoueur, positionHorizontalDuJoueur);
+										this.joueur.setPositionVertical(positionVerticalDuJoueur - 1);
+										this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur] = this.joueur;
 									}
 
 								else
 
-									{
-										nextCase = this.joueur;
+									{	this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur].setPositionVertical(positionVerticalDuJoueur);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur];
+										this.cases[positionVerticalDuJoueur - 1][positionHorizontalDuJoueur] = this.joueur;
 										this.joueur.setPositionVertical(positionVerticalDuJoueur - 1);
 									}
 							}
@@ -152,27 +150,29 @@ public class Plateau
 			}
 
 		/**
-		 * Déplace la {@link CaseJoueur} sur la gauche du {@link Plateau}.
+		 * Déplace la {@link PlayerBox} sur la gauche du {@link Plateau}.
 		 * exceptions pour le déplacement sur une {@link DalleArrivée}
 		 */
 		public void deplacementVersLaGauche()
 			{
 				int positionVerticalDuJoueur = this.joueur.getPositionVertical();
 				int positionHorizontalDuJoueur = this.joueur.getPositionHorizontal();
-				Case nextCase = this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1];
+				
 				if (positionHorizontalDuJoueur - 1 >= 0)
 					{
-						if (nextCase.estAccessible())
+						if (this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1].isAvailable())
 							{
-								if (((Dalle) nextCase).estUneArrivee())
+								if (((Slab) this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1]).isAnArrival())
 
 									{
-										new Dalle(positionVerticalDuJoueur, positionHorizontalDuJoueur);
-										nextCase = this.joueur;
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Slab(positionVerticalDuJoueur, positionHorizontalDuJoueur);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1] = this.joueur;
 										this.joueur.setPositionHorizontal(positionHorizontalDuJoueur - 1);
 									} else
 									{
-										nextCase = this.joueur;
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1].setPositionVertical(positionHorizontalDuJoueur);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1];
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur - 1] = this.joueur;
 										this.joueur.setPositionHorizontal(positionHorizontalDuJoueur - 1);
 									}
 
@@ -182,28 +182,29 @@ public class Plateau
 			}
 
 		/**
-		 * Déplace la {@link CaseJoueur} vers la droite du {@link Plateau}.
+		 * Déplace la {@link PlayerBox} vers la droite du {@link Plateau}.
 		 * exceptions pour le déplacement sur une {@link DalleArrivée}
 		 */
 		public void deplacementVersLaDroite()
 			{
 				int positionVerticalDuJoueur = this.joueur.getPositionVertical();
 				int positionHorizontalDuJoueur = this.joueur.getPositionHorizontal();
-				Case nextCase = this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1];
 				if (positionHorizontalDuJoueur + 1 < NOMBRE_CASES_HORIZONTAL_LABYRINTHE)
 					{
-						if (nextCase.estAccessible())
+						if (this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1].isAvailable())
 							{
-								if (((Dalle) nextCase).estUneArrivee())
+								if (((Slab) this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1]).isAnArrival())
 
 									{
-										new Dalle(positionVerticalDuJoueur, positionVerticalDuJoueur);
-										nextCase = this.joueur;
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = new Slab(positionVerticalDuJoueur, positionVerticalDuJoueur);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1] = this.joueur;
 										this.joueur.setPositionHorizontal(positionHorizontalDuJoueur + 1);
 									} else
 
 									{
-										nextCase = this.joueur;
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1].setPositionHorizontal(positionHorizontalDuJoueur);
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur] = this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1];
+										this.cases[positionVerticalDuJoueur][positionHorizontalDuJoueur + 1] = this.joueur;
 										this.joueur.setPositionHorizontal(positionHorizontalDuJoueur + 1);
 									}
 
@@ -214,12 +215,8 @@ public class Plateau
 
 		public boolean finished(int positionVerticaleJoueur, int positionHorizontaleJoueur)
 			{
-				if (this.arrivee.getPositionVertical() == positionVerticaleJoueur && this.arrivee.getPositionHorizontal() == positionHorizontaleJoueur)
-					{
-						return true;
-					} else
-					return false;
-
+				System.err.printf("%d == %d && %d == %d", this.arrivee.getPositionVertical(), positionVerticaleJoueur, this.arrivee.getPositionHorizontal(), positionHorizontaleJoueur);
+				return (this.arrivee.getPositionVertical() == positionVerticaleJoueur && this.arrivee.getPositionHorizontal() == positionHorizontaleJoueur);
 			}
 
 		@Override

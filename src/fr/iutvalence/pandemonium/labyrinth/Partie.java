@@ -15,8 +15,8 @@ public class Partie
 
 		/**
 		 * création d'une partie. constituer {@link Plateau}, une
-		 * {@link CaseJoueur} et un nombre de tour initialiser a zéro elle
-		 * initialise la {@link CaseJoueur} sur la {@link DalleDepart}.
+		 * {@link PlayerBox} et un nombre de tour initialiser a zéro elle
+		 * initialise la {@link PlayerBox} sur la {@link DalleDepart}.
 		 */
 		public Partie()
 			{
@@ -73,11 +73,11 @@ public class Partie
 			}
 
 		public void start()
-			{	CaseJoueur joueur = this.plateau.getJoueur();
+			{	PlayerBox joueur = this.plateau.getJoueur();
 				@SuppressWarnings("resource")
 				Scanner monScanner = new Scanner(System.in);
 				System.out.println(this);
-				System.out.println("pour vous déplacer : \n 1 -> bas \n 2 -> haut \n 3 -> gauche \n 4 -> haut");
+				System.out.println("pour vous déplacer : \n 1 -> bas \n 2 -> haut \n 3 -> Droite \n 4 -> Gauche");
 				while (!this.plateau.finished(joueur.getPositionVertical(), joueur.getPositionHorizontal()))
 					{
 						int ChoixJoueur = monScanner.nextInt();
@@ -85,7 +85,7 @@ public class Partie
 						choixJoueurParTour(ChoixJoueur);
 						System.out.println(toString());
 					}
-				System.out.println("GG WP");
+				System.out.println("WINN");
 			}
 
 	}

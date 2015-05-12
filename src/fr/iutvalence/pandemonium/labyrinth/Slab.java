@@ -1,35 +1,35 @@
 package fr.iutvalence.pandemonium.labyrinth;
 
 /**
- * Une {@link Dalle} est une {@link InterfaceCase} qui est accessible. javadoc
+ * Une {@link Slab} est une {@link BoxInterface} qui est accessible. javadoc
  * en situant (conceptuellement) Dalle par rapport à Case.
  *
  * @author chenavie.
  * @version 1.0
  */
-public class Dalle extends Case
+public class Slab extends Box
 	{
 
-		public Dalle(int vertical, int horizontal)
+		public Slab(int vertical, int horizontal)
 			{
 				super(vertical, horizontal);
 			}
 
 		/** Par défaut, une dalle n'est pas une arrivée. */
-		public boolean estUneArrivee()
+		public boolean isAnArrival()
 			{
 				return false;
 			}
 
 		/** Par défaut, une dalle n'est pas un départ. */
-		public boolean estUnDepart()
+		public boolean isAnStart()
 			{
 				return false;
 			}
 
 		/** Une Dalle est une Case accessible. */
 		@Override
-		public boolean estAccessible()
+		public boolean isAvailable()
 			{
 				return true;
 			}

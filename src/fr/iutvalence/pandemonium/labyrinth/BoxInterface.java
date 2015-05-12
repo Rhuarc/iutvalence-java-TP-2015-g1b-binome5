@@ -7,8 +7,9 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author chenavie
  * @version 1.0
  */
-public interface InterfaceCase
+public interface BoxInterface
 	{
 		/** Par défaut, une Case est inaccessible. */
-		public boolean estAccessible();
+		public boolean isAvailable();
+		
 	}

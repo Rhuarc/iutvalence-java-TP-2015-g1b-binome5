@@ -6,7 +6,7 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  * @version 1.0
  */
-public class Mur extends Case
+public class Mur extends Box
 	{
 		
 		public Mur(int vertical, int horizontal)
@@ -15,7 +15,7 @@ public class Mur extends Case
 		}
 
 		/** un {@link Mur} est inaccessible */
-		public boolean estAccessible()
+		public boolean isAvailable()
 			{
 				return false;
 			}

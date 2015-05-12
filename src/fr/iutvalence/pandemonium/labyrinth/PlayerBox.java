@@ -6,25 +6,25 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  *
  */
-public class CaseJoueur extends Case implements InterfaceCase
+public class PlayerBox extends Box implements BoxInterface
 	{
 		
 			
-		public CaseJoueur(int vertical, int horizontal)
+		public PlayerBox(int vertical, int horizontal)
 		{
 			super(vertical, horizontal);
 		}
 		
 		/**
-		 * une {@link CaseJoueur} ne peut pas être accessible.
+		 * une {@link PlayerBox} ne peut pas être accessible.
 		 */
-		public boolean estAccessible()
+		public boolean isAvailable()
 			{
 				return false;
 			}
 
 		/**
-		 * representation ASCII d'une {@link CaseJoueur}
+		 * representation ASCII d'une {@link PlayerBox}
 		 */
 		public String toString()
 			{
