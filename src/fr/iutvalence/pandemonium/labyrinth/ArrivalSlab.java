@@ -6,12 +6,12 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  * @version 1.0
  */
-public class DalleArrivée extends Slab implements BoxInterface
+public class ArrivalSlab extends Slab implements BoxInterface
 	{
 		
 		
 
-		public DalleArrivée(int vertical, int horizontal)
+		public ArrivalSlab(int vertical, int horizontal)
 		{
 			super(vertical, horizontal);
 

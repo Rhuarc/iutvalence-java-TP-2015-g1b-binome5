@@ -15,8 +15,8 @@ public class Application
 
 		public static void main(String[] args)
 			{
-				Partie maPartie = new Partie();
-				maPartie.start();
+				Game myGame = new Game();
+				myGame.start();
 
 			}
 

@@ -2,26 +2,26 @@ package fr.iutvalence.pandemonium.labyrinth;
 
 import java.util.Scanner;
 
-public class Partie
+public class Game
 	{
 		/**
 		 * plateau de jeu
 		 */
-		private Plateau plateau;
+		private Board board;
 		/**
 		 * compteur de nombre de tour.
 		 */
-		private int nombreDeTours;
+		private int numberTurns;
 
 		/**
-		 * création d'une partie. constituer {@link Plateau}, une
+		 * création d'une partie. constituer {@link Board}, une
 		 * {@link PlayerBox} et un nombre de tour initialiser a zéro elle
 		 * initialise la {@link PlayerBox} sur la {@link DalleDepart}.
 		 */
-		public Partie()
+		public Game()
 			{
-				this.plateau = new Plateau();
-				this.nombreDeTours = 0;
+				this.board = new Board();
+				this.numberTurns = 0;
 			}
 
 		/**
@@ -37,22 +37,22 @@ public class Partie
 					{
 					case 1:
 						{
-							this.plateau.deplacementVersLeBas();
+							this.board.deplacementVersLeBas();
 							break;
 						}
 					case 2:
 						{
-							this.plateau.deplacementVersLeHaut();
+							this.board.deplacementVersLeHaut();
 							break;
 						}
 					case 3:
 						{
-							this.plateau.deplacementVersLaDroite();
+							this.board.deplacementVersLaDroite();
 							break;
 						}
 					case 4:
 						{
-							this.plateau.deplacementVersLaGauche();
+							this.board.deplacementVersLaGauche();
 							break;
 						}
 					default:
@@ -66,22 +66,22 @@ public class Partie
 			{
 				String partie = "";
 				partie += "tour:";
-				partie += this.nombreDeTours;
+				partie += this.numberTurns;
 				partie += "\n";
-				partie += this.plateau;
+				partie += this.board;
 				return partie;
 			}
 
 		public void start()
-			{	PlayerBox joueur = this.plateau.getJoueur();
+			{	PlayerBox joueur = this.board.getJoueur();
 				@SuppressWarnings("resource")
 				Scanner monScanner = new Scanner(System.in);
 				System.out.println(this);
 				System.out.println("pour vous déplacer : \n 1 -> bas \n 2 -> haut \n 3 -> Droite \n 4 -> Gauche");
-				while (!this.plateau.finished(joueur.getPositionVertical(), joueur.getPositionHorizontal()))
+				while (!this.board.finished(joueur.getPositionVertical(), joueur.getPositionHorizontal()))
 					{
 						int ChoixJoueur = monScanner.nextInt();
-						this.nombreDeTours++;
+						this.numberTurns++;
 						choixJoueurParTour(ChoixJoueur);
 						System.out.println(toString());
 					}

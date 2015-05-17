@@ -6,7 +6,7 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author Eymeric
  *
  */
-public class PlayerBox extends Box implements BoxInterface
+public class PlayerBox extends AbstractBox implements BoxInterface
 	{
 		
 			

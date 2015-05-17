@@ -7,7 +7,7 @@ package fr.iutvalence.pandemonium.labyrinth;
  * @author chenavie.
  * @version 1.0
  */
-public class Slab extends Box
+public class Slab extends AbstractBox
 	{
 
 		public Slab(int vertical, int horizontal)
